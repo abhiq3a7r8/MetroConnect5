@@ -15,6 +15,17 @@
     "experiments": {
       "typedRoutes": true
     },
-    "scheme": "myapp"
+    "scheme": "myapp",
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "5f8b16c8-d6c0-47fb-bc79-1f7a4f13f218"
+      }
+    },
+    "android": {
+      "package": "com.abhi_q3a7r8.MetroConnect5"
+    }
   }
 }
