@@ -2,9 +2,10 @@ import { TouchableOpacity, Text, View } from "react-native";
 
 interface MTextProp {
   buttontext: string;
+  onPress?: () => void; // Add onPress prop
 }
 
-export function Mbutton({ buttontext }: MTextProp) {
+export function Mbutton({ buttontext , onPress}: MTextProp) {
   return (
     <TouchableOpacity 
       style={{
@@ -15,6 +16,7 @@ export function Mbutton({ buttontext }: MTextProp) {
         alignItems: 'center',
         borderRadius: 8
       }}
+      onPress={onPress}
     > 
       <Text style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}>
         {buttontext}
