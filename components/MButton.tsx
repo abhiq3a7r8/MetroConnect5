@@ -11,7 +11,7 @@ export function Mbutton({ buttontext , onPress}: MTextProp) {
       style={{
         backgroundColor: '#3B82F6',
         width: '90%',
-        height: 44,
+        height: 48,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 8

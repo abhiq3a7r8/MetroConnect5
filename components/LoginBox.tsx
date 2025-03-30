@@ -2,7 +2,7 @@ import { useState } from "react";
 import { View, Text, TouchableOpacity, Alert } from "react-native";
 import CustomText from "./CustomText";
 import { MTextBox } from "./MTextBox";
-import { Mbutton } from "@/MButton";
+import Mbutton from "./MButton";
 
 export function LoginBox() {
     const [phone, setPhone] = useState("");
