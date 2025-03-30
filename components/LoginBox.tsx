@@ -9,7 +9,7 @@ export function LoginBox() {
     const [password, setPassword] = useState("");
 
     const handleLogin = async () => {
-        console.log(phone); // Add this line for debugging
+        console.log(phone); 
         const response = await fetch("https://38c2-150-242-205-54.ngrok-free.app/login", {
             method: "POST",
             headers: {
@@ -26,7 +26,7 @@ export function LoginBox() {
 
         const data = await response.json();
         Alert.alert("Login Successful", data.message || "Login successful!");
-        // Handle successful login (e.g., navigate to next screen)
+        
     };
 
     return (
