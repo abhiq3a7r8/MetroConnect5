@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { router, useRouter } from "expo-router";
 import { View, Text, TouchableOpacity, Alert } from "react-native";
 import CustomText from "./CustomText";
 import { MTextBox } from "./MTextBox";
@@ -10,7 +11,7 @@ export function LoginBox() {
 
     const handleLogin = async () => {
         console.log(phone); 
-        const response = await fetch("https://38c2-150-242-205-54.ngrok-free.app/login", {
+        const response = await fetch("http://localhost:3000/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -25,7 +26,8 @@ export function LoginBox() {
         }
 
         const data = await response.json();
-        Alert.alert("Login Successful", data.message || "Login successful!");
+        
+        router.replace("/dashboard")
         
     };
 

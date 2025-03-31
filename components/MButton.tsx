@@ -1,3 +1,4 @@
+import { Poppins_100Thin, Poppins_100Thin_Italic } from "@expo-google-fonts/poppins";
 import { TouchableOpacity, Text, View } from "react-native";
 
 interface MTextProp {
@@ -18,7 +19,7 @@ export function Mbutton({ buttontext , onPress}: MTextProp) {
       }}
       onPress={onPress}
     > 
-      <Text style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}>
+      <Text className="font-poppinsMedium" style={{ color: 'white', fontSize: 18 }}>
         {buttontext}
       </Text>
     </TouchableOpacity>

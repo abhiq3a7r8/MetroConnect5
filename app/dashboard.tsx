@@ -1,15 +1,28 @@
-import { View , Text , Image } from "react-native";
+import { View, ScrollView, StyleSheet } from "react-native";
 import HomeWidget from "@/components/HomeWidget";
 import { Navbar } from "@/components/Navbar";
-import { Home } from "lucide-react-native";
-
-
+import HomeHeader from "@/components/HomeHeader";
 
 export default function Dashboard() {
   return (
-    <View className="flex-1 bg-gray-100 items-center justify-center">
+    <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <HomeHeader />
         <HomeWidget />
-        <Navbar />
+      </ScrollView>
+      <Navbar />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#f3f4f6", 
+  },
+  scrollContent: {
+    flexGrow: 1,
+    alignItems: "center", // Centers children horizontally
+    paddingBottom: 80, // Prevents overlap with Navbar
+  },
+});

@@ -6,7 +6,7 @@ export default function RootLayout() {
     const router = useRouter();
 
     useEffect(() => {
-        router.replace("/dashboard"); // Change "/home" to your desired initial screen
+        router.replace("/enterotp"); 
     }, []);
 
     return <Stack screenOptions={{ headerShown: false }} />;
