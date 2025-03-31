@@ -9,27 +9,40 @@ export function LoginBox() {
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
 
+
     const handleLogin = async () => {
-        console.log(phone); 
-        const response = await fetch("http://localhost:3000/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ phone, password }),
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            Alert.alert("Login Failed", errorData.message || "Login failed due to an unknown error.");
-            return;
+        console.log("Phone:", phone);
+        
+        try {
+            const response = await fetch("http://localhost:3000/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ phone, password }),
+            });
+    
+            if (!response.ok) {
+                const errorData = await response.json();
+                Alert.alert("Login Failed", errorData.message || "Login failed due to an unknown error.");
+                return;
+            }
+    
+            const data = await response.json(); // Assuming the response contains relevant data
+    
+            router.replace("/enterotp");
+    
+            // Call send-otp as a GET request
+            await fetch("http://localhost:3002/send-otp");
+    
+            console.log("OTP request sent.");
+        } catch (error) {
+            console.error("Error during login:", error);
+            Alert.alert("Error", "Something went wrong. Please try again.");
         }
-
-        const data = await response.json();
-        
-        router.replace("/dashboard")
-        
     };
+    
+
 
     return (
         <View className="bg-white h-96 w-[90%] rounded-[10] justify-evenly items-center p-4">

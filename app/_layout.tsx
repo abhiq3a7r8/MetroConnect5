@@ -6,7 +6,7 @@ export default function RootLayout() {
     const router = useRouter();
 
     useEffect(() => {
-        router.replace("/enterotp"); 
+        router.replace("/"); 
     }, []);
 
     return <Stack screenOptions={{ headerShown: false }} />;
