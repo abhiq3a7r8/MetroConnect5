@@ -28,11 +28,11 @@ export function LoginBox() {
                 return;
             }
     
-            const data = await response.json(); // Assuming the response contains relevant data
+            const data = await response.json(); 
     
             router.replace("/enterotp");
     
-            // Call send-otp as a GET request
+            
             await fetch("http://localhost:3002/send-otp");
     
             console.log("OTP request sent.");

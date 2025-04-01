@@ -38,6 +38,27 @@ app.post("/login", async (req, res) => {
   }
 });
 
+const Station = mongoose.model("stations", new mongoose.Schema({
+  station_name: String,
+  opened: String,
+  inter_station_distance_km: Number,
+  from_versova_km: Number,
+  from_ghatkopar_km: Number,
+  connections: String,
+  layout: String,
+}));
+
+app.get("/api/stations", async (req, res) => {
+  try {
+    const stations = await Station.find({}, "-_id station_name");
+    res.json(stations);
+  } catch (err) {
+    console.error("Error fetching stations:", err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
