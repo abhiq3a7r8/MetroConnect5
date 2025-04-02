@@ -1,11 +1,11 @@
 import { View, TouchableOpacity, Text } from "react-native";
-import { Home, MapPin, Bell, CreditCard } from "lucide-react-native";
+import { Home, MapPin, QrCode, CreditCard } from "lucide-react-native";
 
 const navItems = [
   { icon: Home, label: "Home" },
   { icon: MapPin, label: "Navigate" },
-  { icon: Bell, label: "Alerts" },
-  { icon: CreditCard, label: "Wallet" },
+  { icon: QrCode, label: "Tickets" },
+  { icon: CreditCard, label: "Pass" },
 ];
 
 export function Navbar() {
@@ -14,7 +14,7 @@ export function Navbar() {
       {navItems.map(({ icon: Icon, label }) => (
         <TouchableOpacity key={label}>
           <View className="flex items-center">
-            <Icon size={32} color="white" />
+            <Icon size={28} color="white" />
             <Text className="font-poppinsMedium text-zinc-300 text-xs mt-1">{label}</Text>
           </View>
         </TouchableOpacity>

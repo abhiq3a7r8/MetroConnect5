@@ -3,7 +3,7 @@ import { View, StyleSheet } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import axios from "axios";
 
-const MetroStationDropdown = ({ zIndex, placeholder }) => {
+const MetroStationDropdown = ({ zIndex, placeholder, onSelect }) => {
   const [stations, setStations] = useState([]);
   const [open, setOpen] = useState(false);
   const [selectedStation, setSelectedStation] = useState(null);
@@ -11,7 +11,7 @@ const MetroStationDropdown = ({ zIndex, placeholder }) => {
   useEffect(() => {
     const fetchStations = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/stations");
+        const response = await axios.get("https://53e7-150-242-205-236.ngrok-free.app/api/stations");
         const stationList = response.data.map((station) => ({
           label: station.station_name,
           value: station.station_name,
@@ -25,14 +25,21 @@ const MetroStationDropdown = ({ zIndex, placeholder }) => {
     fetchStations();
   }, []);
 
+  const handleSelect = (value) => {
+    setSelectedStation(value);
+    if (onSelect) {
+      onSelect(value); // Notify parent component
+    }
+  };
+
   return (
-    <View style={[styles.container, { zIndex: zIndex }]}>
+    <View style={[styles.container, { zIndex }]}>
       <DropDownPicker
         open={open}
         value={selectedStation}
         items={stations}
         setOpen={setOpen}
-        setValue={setSelectedStation}
+        setValue={handleSelect} // Call handleSelect on selection
         setItems={setStations}
         placeholder={placeholder}
         style={styles.dropdown}
@@ -46,6 +53,7 @@ const MetroStationDropdown = ({ zIndex, placeholder }) => {
 const styles = StyleSheet.create({
   container: {
     width: "90%",
+    elevation: 5,
   },
   dropdown: {
     backgroundColor: "#F5F5F5",

@@ -24,12 +24,12 @@ export function Otpinput({ onChangeOtp }) {
     };
 
     return (
-        <View className="flex flex-row justify-center space-x-4">
+        <View className="flex flex-row ">
             {[...Array(6)].map((_, index) => (
                 <TextInput
                     key={index}
                     ref={inputRefs[index]}
-                    className="text-center font-poppins text-3xl bg-zinc-100 border-2 border-zinc-300 h-14 rounded-lg w-10"
+                    className="text-center m-1 font-poppins text-3xl bg-zinc-100 border-2 border-zinc-300 h-14 rounded-lg w-9"
                     maxLength={1}
                     keyboardType="numeric"
                     onChangeText={(text) => handleTextChange(text, index)}
