@@ -14,7 +14,7 @@ export function LoginBox() {
         console.log("Phone:", phone);
         
         try {
-            const response = await fetch("http://localhost:3000/login", {
+            const response = await fetch("https://5733-125-99-93-18.ngrok-free.app/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -33,7 +33,7 @@ export function LoginBox() {
             router.replace("/enterotp");
     
             
-            await fetch("http://localhost:3002/send-otp");
+            await fetch("https://4265-125-99-93-18.ngrok-free.app/send-otp");
     
             console.log("OTP request sent.");
         } catch (error) {

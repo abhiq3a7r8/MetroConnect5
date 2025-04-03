@@ -4,13 +4,14 @@
     "slug": "MetroConnect5",
     "version": "1.0.0",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
+    "newArchEnabled": false,
     "web": {
       "bundler": "metro",
       "output": "static"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-barcode-scanner"
     ],
     "experiments": {
       "typedRoutes": true
@@ -25,7 +26,16 @@
       }
     },
     "android": {
-      "package": "com.abhi_q3a7r8.MetroConnect5"
+      "package": "com.abhi_q3a7r8.MetroConnect5",
+      "permissions": [
+        "CAMERA"
+      ]
+    },
+    "ios": {
+      "bundleIdentifier": "com.abhi-q3a7r8.MetroConnect5",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app needs access to the camera to scan QR codes and barcodes."
+      }
     }
   }
 }
