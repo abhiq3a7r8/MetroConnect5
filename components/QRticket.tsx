@@ -4,14 +4,14 @@ import { ArrowLeftRight } from "lucide-react-native";
 import QRCode from "react-native-qrcode-svg"; // Import QR Code library
 import Mbutton from "./MButton";
 
-export function QRticket({ startStation, endStation }) {
+export function QRticket({ startStation, endStation , tripType , numTickets}) {
     const [ticket, setTicket] = useState({
         id: "MT20250402",
         passenger: "Abhirat More",
-        from: startStation || "Station A",
-        to: endStation || "Station B",
-        passengers: 1,
-        ticketType: "One-way",
+        from: startStation,
+        to: endStation,
+        passengers: numTickets,
+        ticketType: tripType,
         fare: "₹ 30",
         paymentStatus: "Pending",
     });

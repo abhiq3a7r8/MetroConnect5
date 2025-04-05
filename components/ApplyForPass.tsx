@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Image, Button, Alert } from 'react-native';
+import { View, Text, TextInput, Image, Alert, Pressable } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
 const ApplyPass = () => {
@@ -27,9 +27,9 @@ const ApplyPass = () => {
       Alert.alert('Please fill in all fields and upload both images.');
       return;
     }
-    
+
     Alert.alert('Pass Application Submitted!', `Name: ${name}\nAge: ${age}\nID: ${idNumber}`);
-    // Replace with actual submission logic (API request, database storage, etc.)
+    // Replace with actual submission logic
   };
 
   return (
@@ -37,14 +37,14 @@ const ApplyPass = () => {
       <Text className="font-poppins text-2xl text-center mb-4">Apply for Metro Pass</Text>
 
       <TextInput 
-        className="border p-2 rounded-md mb-3"
+        className="border border-zinc-400 p-2 rounded-md mb-3"
         placeholder="Full Name"
         value={name}
         onChangeText={setName}
       />
       
       <TextInput 
-        className="border p-2 rounded-md mb-3"
+        className="border border-zinc-400 p-2 rounded-md mb-3"
         placeholder="Age"
         keyboardType="numeric"
         value={age}
@@ -52,7 +52,7 @@ const ApplyPass = () => {
       />
       
       <TextInput 
-        className="border p-2 rounded-md mb-3"
+        className="border border-zinc-400 p-2 rounded-md mb-3"
         placeholder="ID Number"
         value={idNumber}
         onChangeText={setIdNumber}
@@ -61,17 +61,30 @@ const ApplyPass = () => {
       {/* Upload Photo Section */}
       <Text className="text-lg font-poppins mb-1">Upload Profile Photo</Text>
       {photo && <Image source={{ uri: photo }} className="w-24 h-24 rounded-full mx-auto mb-3" />}
-      <Button title="Upload Photo" onPress={() => pickImage(setPhoto)} color="blue" />
+      <Pressable 
+        className="bg-blue-600 py-2 px-4 rounded-lg mb-3 self-center"
+        onPress={() => pickImage(setPhoto)}
+      >
+        <Text className="text-white font-poppins">Upload Photo</Text>
+      </Pressable>
 
       {/* Upload Aadhaar Card Section */}
       <Text className="text-lg font-poppins mb-1 mt-4">Upload Aadhaar Card</Text>
       {aadhaar && <Image source={{ uri: aadhaar }} className="w-36 h-24 rounded-lg mx-auto mb-3" />}
-      <Button title="Upload Aadhaar Card" onPress={() => pickImage(setAadhaar)} color="blue" />
+      <Pressable 
+        className="bg-blue-600 py-2 px-4 rounded-lg mb-3 self-center"
+        onPress={() => pickImage(setAadhaar)}
+      >
+        <Text className="text-white font-poppins">Upload Aadhaar Card</Text>
+      </Pressable>
 
       {/* Submit Button */}
-      <View className="mt-4">
-        <Button title="Submit Application" onPress={handleSubmit} color="#28A745" />
-      </View>
+      <Pressable 
+        className="bg-green-600 py-3 rounded-lg mt-4"
+        onPress={handleSubmit}
+      >
+        <Text className="text-white text-center font-poppins">Submit Application</Text>
+      </Pressable>
     </View>
   );
 };

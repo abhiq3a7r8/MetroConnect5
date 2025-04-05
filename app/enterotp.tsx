@@ -10,7 +10,8 @@ export function Enterotp() {
     const handleVerify = async (otp) => {
         console.log(otp)
         try {
-            const response = await fetch("https://4265-125-99-93-18.ngrok-free.app/verify-otp", {
+            const response = await fetch("http://192.168.133.42:3001/verify-otp", {
+                
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

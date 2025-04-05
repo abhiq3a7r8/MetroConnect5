@@ -15,7 +15,7 @@ export function bookingsummary(){
             </TouchableOpacity>
             <Text className="font-poppins text-xl">Wed, 2 April</Text>
             </View>
-            <TicketSummary startStation={params.startStation} endStation={params.endStation}/>
+            <TicketSummary startStation={params.startStation} endStation={params.endStation} tripType={params.tripType} numTickets={params.numTickets} />
             <Navbar />
         </View>
     )

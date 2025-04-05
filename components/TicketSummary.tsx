@@ -1,10 +1,13 @@
 import { View, Text, Alert, Linking, ActivityIndicator } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { router, useLocalSearchParams } from "expo-router"; 
 import { ArrowLeftRight } from "lucide-react-native";
 import Mbutton from "./MButton";
 import PaymentMode from "./PaymentMode";
 
-export function TicketSummary({ startStation, endStation }) {
+export function TicketSummary({ startStation, endStation, tripType, numTickets }) {
+    
+
     const [ticket, setTicket] = useState({
         id: "MT20250402",
         passenger: "Abhirat More",
@@ -12,28 +15,41 @@ export function TicketSummary({ startStation, endStation }) {
         to: endStation || "Station B",
         date: "April 2, 2025",
         time: "10:30 AM",
-        passengers: 1,
-        ticketType: "One-way",
-        fare: "₹ 30",
+        passengers: numTickets,
+        ticketType: tripType,
+        fare: `₹ ${numTickets ? numTickets * 30 : 30}`, 
         paymentStatus: "Pending",
     });
 
-    const [loading, setLoading] = useState(false); // Loading state
+    const [loading, setLoading] = useState(false); 
 
     const handlePayNow = async () => {
-        setLoading(true); // Start loading
-        const upiUrl = "upi://pay?pa=audire444@oksbi&pn=Name&mc=1234&tid=TxnID&tr=OrderID&tn=Payment&am=30&cu=INR";
+        setLoading(true); 
+        const upiUrl = `upi://pay?pa=audire444@oksbi&pn=Name&mc=1234&tid=TxnID&tr=OrderID&tn=Payment&am=${ticket.fare.replace("₹ ", "")}&cu=INR`;
 
         try {
             const supported = await Linking.canOpenURL(upiUrl);
             if (supported) {
                 await Linking.openURL(upiUrl);
 
-                // Simulate processing time (3s delay)
+                
                 setTimeout(() => {
                     setTicket((prev) => ({ ...prev, paymentStatus: "Paid" }));
-                    setLoading(false); // Stop loading after update
+                    setLoading(false); 
                 }, 3000);
+                console.log(ticket)
+                router.push({
+                    pathname: "/tickets",
+                    params: {
+                      id: ticket.id,
+                      passenger: ticket.passenger,
+                      startStation: ticket.from,
+                      endStation: ticket.to,
+                      numTickets: ticket.passengers,
+                      tripType: ticket.ticketType,
+                    }
+                  });
+                  
             } else {
                 Alert.alert("Error", "Could not open Google Pay.");
                 setLoading(false);
@@ -46,7 +62,6 @@ export function TicketSummary({ startStation, endStation }) {
 
     return (
         <View className="bg-white h-[500] w-[90%] rounded-2xl p-5 items-center mt-4">
-            
             <Text className="text-2xl font-poppinsMedium mb-4">Ticket Summary</Text>
 
             <View className="w-full flex flex-col gap-4">

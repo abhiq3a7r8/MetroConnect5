@@ -11,7 +11,7 @@ const MetroStationDropdown = ({ zIndex, placeholder, onSelect }) => {
   useEffect(() => {
     const fetchStations = async () => {
       try {
-        const response = await axios.get("https://fc58-150-242-205-236.ngrok-free.app/api/stations");
+        const response = await axios.get("http://192.168.133.42:3000/api/stations");
         const stationList = response.data.map((station) => ({
           label: station.station_name,
           value: station.station_name,

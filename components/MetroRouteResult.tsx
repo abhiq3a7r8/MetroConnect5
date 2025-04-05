@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text } from "react-native";
 import { ArrowLeftRight } from "lucide-react-native";
 import { useRouter } from "expo-router"; // Import Expo Router
@@ -9,6 +9,9 @@ import Mbutton from "./MButton";
 const MetroRouteResult = ({ startStation, endStation }) => {
   const router = useRouter(); // Initialize router
 
+  const [tripType, setTripType] = useState(); 
+  const [numTickets, setNumTickets] = useState(); 
+
   if (!startStation || !endStation) return null; // Don't show if empty
 
   const handleBookTicket = () => {
@@ -17,10 +20,11 @@ const MetroRouteResult = ({ startStation, endStation }) => {
       params: {
         startStation,
         endStation,
+        tripType,
+        numTickets,
       },
     });
   };
-  
 
   return (
     <View className="bg-white h-[400] mt-4 p-4 w-[90%] rounded-[10]">
@@ -39,9 +43,13 @@ const MetroRouteResult = ({ startStation, endStation }) => {
         </View>
       </View>
 
-      <SingleReturn />
+      
+      <SingleReturn onSelectionChange={setTripType} />
+
       <Text className="text-xl font-poppins text-center mt-10">Number of Tickets</Text>
-      <FixedStopsSlider />
+
+      
+      <FixedStopsSlider onStopChange={setNumTickets} />
 
       <View className="mt-10 flex items-center w-full">
         <Mbutton buttontext="Book Ticket" onPress={handleBookTicket} />
