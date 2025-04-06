@@ -14,7 +14,7 @@ export function Navbar() {
   const pathname = usePathname(); // get the current route
 
   return (
-    <View className="flex-row items-center justify-evenly absolute bottom-0 h-20 rounded-t-3xl w-full bg-zinc-800 z-50">
+    <View className="flex-row items-center justify-evenly absolute bottom-0 h-20 rounded-t-3xl w-full bg-zinc-800 z-10">
       {navItems.map(({ icon: Icon, label, route }) => {
         const isActive = pathname === route;
 

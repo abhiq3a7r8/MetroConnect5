@@ -6,10 +6,16 @@ import MetroStationDropdown from "./MetroStationDropdown";
 export function HomeWidget({ onRouteFound }) {
   const [startStation, setStartStation] = useState("");
   const [endStation, setEndStation] = useState("");
+  const [error, setError] = useState("");
 
   const handleFindRoute = () => {
-    if (startStation && endStation) {
-      onRouteFound(startStation, endStation); // Pass data to Dashboard
+    if (!startStation || !endStation) {
+      setError("Please select route");
+    } else if (startStation === endStation) {
+      setError("Start and End station cannot be the same");
+    } else {
+      setError(""); 
+      onRouteFound(startStation, endStation);
     }
   };
 
@@ -23,6 +29,13 @@ export function HomeWidget({ onRouteFound }) {
       {/* Dropdowns */}
       <MetroStationDropdown zIndex={400} placeholder="Starting Station" onSelect={setStartStation} />
       <MetroStationDropdown zIndex={200} placeholder="Ending Station" onSelect={setEndStation} />
+
+      {/* Error Message */}
+      {error !== "" && (
+        <Text className="text-red-500 text-sm font-poppinsMedium mt-[-10] mb-1">
+          {error}
+        </Text>
+      )}
 
       {/* Find Button */}
       <MButton buttontext="Find" onPress={handleFindRoute} />

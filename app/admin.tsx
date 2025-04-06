@@ -13,16 +13,41 @@ export function Admin() {
 
   useEffect(() => {
     (async () => {
-      const { status } = await BarCodeScanner.requestPermissionsAsync(); // Request barcode scanner permissions
+      const { status } = await BarCodeScanner.requestPermissionsAsync(); 
       setHasPermission(status === "granted");
     })();
   }, []);
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
-    setShowScanner(false); // Close scanner after scanning
+  
+    
+    const ticketRegex = /Ticket ID:\s*(\w+),\s*Passenger:\s*(.*?),\s*From:\s*(.*?),\s*To:\s*(.*)/;
+    const match = data.match(ticketRegex);
+  
+    if (match) {
+      const [, ticketId, passenger, from, to] = match;
+  
+      if (ticketId === 'MT20250402') {
+        alert(
+          `✅ Valid Ticket!\n\n` +
+          `Ticket ID: ${ticketId}\n` +
+          `Passenger: ${passenger}\n` +
+          `From: ${from}\n` +
+          `To: ${to}`
+        );
+      } else {
+        alert(`❌ Invalid Ticket ID: ${ticketId}`);
+      }
+    } else {
+      alert(`❌ Invalid QR Code Format.\nScanned Data: ${data}`);
+    }
+  
+    setShowScanner(false);
   };
+  
+  
+  
 
   const openScanner = () => {
     setShowScanner(true);

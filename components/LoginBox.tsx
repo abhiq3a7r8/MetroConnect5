@@ -12,7 +12,6 @@ export function LoginBox() {
 
     const handleLogin = async () => {
         console.log("Phone:", phone);
-        console.log(URL3000)
         try {
             const response = await fetch("http://192.168.133.42:3000/login", {
                 method: "POST",

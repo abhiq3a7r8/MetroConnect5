@@ -4,6 +4,7 @@ import MetroRouteResult from "@/components/MetroRouteResult";
 import { Navbar } from "@/components/Navbar";
 import HomeHeader from "@/components/HomeHeader";
 import { useState } from "react";
+import ShakePopup from "@/components/ShakePopup";
 
 export default function Dashboard() {
   const [route, setRoute] = useState({ start: "", end: "" });
@@ -34,6 +35,7 @@ export default function Dashboard() {
           <View className="bg-white h-36 w-[47%] rounded-[10] justify-evenly items-center p-4"></View>
         </View>
       </ScrollView>
+      <ShakePopup />
       <Navbar />
     </View>
   );

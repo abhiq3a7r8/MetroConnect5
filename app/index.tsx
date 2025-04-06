@@ -10,7 +10,7 @@ export default function Index() {
     tapCount.current += 1;
     console.log(tapCount)
     if (tapCount.current === 4) {
-      router.replace("/adminauth")
+      router.push("/adminauth")
     }
   };
 

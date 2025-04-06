@@ -11,7 +11,7 @@ export function HomeHeader() {
         className="flex-row items-center justify-evenly bg h-full w-28 rounded-3xl border-2"
         onPress={() => router.replace("/")}
       >
-        <MapPin />
+        <MapPin color={"black"}/>
         <Text className="font-poppins">Mumbai</Text>
       </TouchableOpacity>
     </View>

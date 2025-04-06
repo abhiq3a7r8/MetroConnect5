@@ -6,7 +6,7 @@ from pyzbar.pyzbar import decode
 st.title("🎫 Metro Ticket QR Validator")
 
 # Predefined valid ticket ID (replace with DB check if needed)
-VALID_TICKET_ID = "MT20250402"
+VALID__ID = "MT20250402"
 
 # OpenCV Webcam Stream
 FRAME_WINDOW = st.image([])  # Placeholder for video feed

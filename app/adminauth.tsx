@@ -6,7 +6,7 @@ import { router } from "expo-router";
 
 export function AdminAuth() {
     const handleProceed = () => {
-        router.replace("/admin")
+        router.push("/admin")
     };
 
     return (
