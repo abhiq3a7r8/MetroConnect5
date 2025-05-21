@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Mumbai Metro Map</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <style>
     html, body { height: 100%; margin: 0; }
@@ -24,50 +24,83 @@
       attribution: ''
     }).addTo(map);
 
-    const metroStations = [
-      { name: "Versova", coords: [19.1340, 72.8258] },
-      { name: "DN Nagar", coords: [19.1314, 72.8315] },
-      { name: "Azad Nagar", coords: [19.1298, 72.8368] },
-      { name: "Andheri", coords: [19.1196, 72.8464] },
-      { name: "Western Express Highway", coords: [19.1096, 72.8567] },
-      { name: "Chakala", coords: [19.1042, 72.8647] },
-      { name: "Marol Naka", coords: [19.1025, 72.8691] },
-      { name: "Saki Naka", coords: [19.0976, 72.8759] },
-      { name: "Asalpha", coords: [19.0892, 72.8828] },
-      { name: "Ghatkopar", coords: [19.0817, 72.9080] }
-    ];
+    const getLineColor = (line) => {
+      const lineColors = {
+        "Line 1": "#3b82f6",
+        "1": "#3b82f6",
+        "Line 2A": "#facc15",
+        "2A": "#facc15",
+        "Line 7": "#DC2626",
+        "7": "#DC2626"
+      };
+      return lineColors[line] || "#888";
+    };
 
-    const latlngs = [];
+    const lines = {
+      "Line 1": [
+        { name: "Versova", coords: [19.1340, 72.8258] },
+        { name: "DN Nagar", coords: [19.1314, 72.8315] },
+        { name: "Azad Nagar", coords: [19.1298, 72.8368] },
+        { name: "Andheri", coords: [19.1196, 72.8464] },
+        { name: "Western Express Highway", coords: [19.1096, 72.8567] },
+        { name: "Chakala", coords: [19.1042, 72.8647] },
+        { name: "Marol Naka", coords: [19.1025, 72.8691] },
+        { name: "Saki Naka", coords: [19.0976, 72.8759] },
+        { name: "Asalpha", coords: [19.0892, 72.8828] },
+        { name: "Ghatkopar", coords: [19.0817, 72.9080] }
+      ],
+      "Line 2A": [
+        { name: "Dahisar East", coords: [19.2515, 72.8590] },
+        { name: "Ovaripada", coords: [19.2446, 72.8615] },
+        { name: "Rashtriya Udyan", coords: [19.2384, 72.8610] },
+        { name: "Mandapeshwar", coords: [19.2298, 72.8597] },
+        { name: "Shimpoli", coords: [19.2183, 72.8546] },
+        { name: "Kandarpada", coords: [19.2090, 72.8515] },
+        { name: "D N Nagar", coords: [19.1982, 72.8425] }
+      ],
+      "Line 7": [
+        { name: "Dahisar East", coords: [19.2515, 72.8590] },
+        { name: "Ovaripada", coords: [19.2446, 72.8615] },
+        { name: "Borivali East", coords: [19.2308, 72.8644] },
+        { name: "Kandarpada", coords: [19.2150, 72.8655] },
+        { name: "Goregaon East", coords: [19.1730, 72.8600] },
+        { name: "Jogeshwari East", coords: [19.1344, 72.8590] }
+      ]
+    };
 
     const smallMetroIcon = L.icon({
       iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-      iconSize: [12, 20],      
-      iconAnchor: [6, 20],      
+      iconSize: [12, 20],
+      iconAnchor: [6, 20],
       popupAnchor: [0, -18]
     });
 
-    metroStations.forEach(station => {
-      L.marker(station.coords, { icon: smallMetroIcon })
-        .bindPopup(`<b>${station.name}</b>`)
-        .addTo(map);
+    Object.entries(lines).forEach(([lineName, stations]) => {
+      const latlngs = [];
 
-      L.circleMarker(station.coords, {
-        radius: 6,
-        color: '#ff0000',
-        fillColor: '#ff0000',
-        fillOpacity: 1
+      stations.forEach(station => {
+        L.marker(station.coords, { icon: smallMetroIcon })
+          .bindPopup(`<b>${station.name}</b><br>${lineName}`)
+          .addTo(map);
+
+        L.circleMarker(station.coords, {
+          radius: 6,
+          color: getLineColor(lineName),
+          fillColor: getLineColor(lineName),
+          fillOpacity: 1
+        }).addTo(map);
+
+        latlngs.push(station.coords);
+      });
+
+      const metroLine = L.polyline(latlngs, {
+        color: getLineColor(lineName),
+        weight: 5,
+        opacity: 0.8
       }).addTo(map);
 
-      latlngs.push(station.coords);
+      map.fitBounds(metroLine.getBounds());
     });
-
-    const metroLine = L.polyline(latlngs, {
-      color: '#0077ff',
-      weight: 5,
-      opacity: 0.8
-    }).addTo(map);
-
-    map.fitBounds(metroLine.getBounds());
   </script>
 </body>
 </html>

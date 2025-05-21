@@ -3,15 +3,16 @@ import { View, StyleSheet } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import axios from "axios";
 
-const MetroStationDropdown = ({ zIndex, placeholder, onSelect }) => {
+const MetroStationDropdown = ({ zIndex, placeholder, onSelect , accessibilityLabel }: any) => {
   const [stations, setStations] = useState([]);
   const [open, setOpen] = useState(false);
   const [selectedStation, setSelectedStation] = useState(null);
+  
 
   useEffect(() => {
     const fetchStations = async () => {
       try {
-        const response = await axios.get("http://192.168.133.42:3000/api/stations");
+        const response = await axios.get("http://192.168.168.100:3000/api/stations");
         const stationList = response.data.map((station) => ({
           label: station.station_name,
           value: station.station_name,
@@ -34,7 +35,8 @@ const MetroStationDropdown = ({ zIndex, placeholder, onSelect }) => {
 
   return (
     <View style={[styles.container, { zIndex }]}>
-      <DropDownPicker
+      <DropDownPicker 
+        accessibilityLabel={accessibilityLabel}
         open={open}
         value={selectedStation}
         items={stations}

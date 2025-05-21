@@ -3,7 +3,7 @@ import TicketSummary from "@/components/TicketSummary"
 import { router, useLocalSearchParams } from "expo-router"
 import { Navbar } from "@/components/Navbar"
 import { ChevronLeft } from "lucide-react-native"
-
+import ShakePopup from "@/components/ShakePopup"
 export function bookingsummary(){
     const params = useLocalSearchParams()
     console.log(params)
@@ -16,6 +16,7 @@ export function bookingsummary(){
             <Text className="font-poppins text-xl">Wed, 2 April</Text>
             </View>
             <TicketSummary startStation={params.startStation} endStation={params.endStation} tripType={params.tripType} numTickets={params.numTickets} />
+            <ShakePopup />
             <Navbar />
         </View>
     )

@@ -6,6 +6,7 @@ import InMetro from "@/components/InMetro";
 import { Train } from "lucide-react-native";
 import WebView from "react-native-webview";
 import MetroLineHorizontal from "@/components/MetroLineHorizontal";
+import ShakePopup from "@/components/ShakePopup";
 
 const { width } = Dimensions.get("window");
 const height = 200;
@@ -29,7 +30,7 @@ export default function InsideMetro() {
         const { latitude: lat, longitude: lng } = location.coords;
 
         // Send location to backend (non-blocking)
-        fetch("http://192.168.133.42:4000/api/location", {
+        fetch("http://192.168.168.100:4000/api/location", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -101,7 +102,7 @@ export default function InsideMetro() {
 
         <View style={{ width: width * 0.8, height }}>
           <WebView
-            source={{ uri: "http://192.168.133.42:4000/map" }}
+            source={{ uri: "http://192.168.168.100:4000/map" }}
             style={{ width: "100%", height: "100%", borderRadius: 40 }}
             injectedJavaScript={`
               const meta = document.createElement('meta');
@@ -119,6 +120,7 @@ export default function InsideMetro() {
           </Text>
         </View>
       </View>
+      <ShakePopup />
     </View>
   );
 }

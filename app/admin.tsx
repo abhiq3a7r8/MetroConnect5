@@ -18,6 +18,8 @@ export function Admin() {
     })();
   }, []);
 
+
+  
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
   

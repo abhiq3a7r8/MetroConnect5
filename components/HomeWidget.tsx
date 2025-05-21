@@ -27,8 +27,8 @@ export function HomeWidget({ onRouteFound }) {
       </View>
 
       {/* Dropdowns */}
-      <MetroStationDropdown zIndex={400} placeholder="Starting Station" onSelect={setStartStation} />
-      <MetroStationDropdown zIndex={200} placeholder="Ending Station" onSelect={setEndStation} />
+      <MetroStationDropdown accessibilityLabel="startStationDropdown" zIndex={400} placeholder="Starting Station" onSelect={setStartStation} />
+      <MetroStationDropdown accessibilityLabel="endStationDropdown" zIndex={200} placeholder="Ending Station" onSelect={setEndStation} />
 
       {/* Error Message */}
       {error !== "" && (

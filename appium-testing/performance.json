@@ -1,0 +1,90 @@
+{
+  "meta": {
+    "application": "Metro5 App",
+    "version": "1.2.3",
+    "test_date": "2025-04-16T18:30:00Z",
+    "environment": "Staging",
+    "device": "Android Emulator - Pixel 6 (API 34)",
+    "network": "WiFi (50 Mbps)",
+    "test_runner": "Appium v2.0.1"
+  },
+  "login_flow": {
+    "login_api_call": {
+      "endpoint": "http://192.168.168.100:3000/login",
+      "response_time_ms": 412,
+      "status_code": 200,
+      "payload_size_kb": 3.4,
+      "cpu_usage_percent": 17.2,
+      "memory_usage_mb": 27.8,
+      "caching": {
+        "enabled": false,
+        "cache_hit": false
+      },
+      "db_query_time_ms": 138,
+      "validation_time_ms": 89
+    },
+    "otp_api_call": {
+      "endpoint": "http://192.168.168.100:3001/send-otp",
+      "response_time_ms": 198,
+      "status_code": 200,
+      "cpu_usage_percent": 12.3,
+      "memory_usage_mb": 18.9,
+      "caching": {
+        "enabled": true,
+        "cache_hit": true,
+        "cache_time_to_live_sec": 600
+      }
+    }
+  },
+  "ui_rendering": {
+    "login_screen": {
+      "load_time_ms": 284,
+      "frame_rate_fps": 59.8,
+      "cpu_usage_percent": 14.5,
+      "memory_usage_mb": 31.2,
+      "component_mount_times_ms": {
+        "MTextBox_phone": 32,
+        "MTextBox_password": 30,
+        "MButton_continue": 24,
+        "Touchable_login_otp": 20
+      }
+    },
+    "otp_screen": {
+      "load_time_ms": 312,
+      "frame_rate_fps": 58.6,
+      "cpu_usage_percent": 16.9,
+      "memory_usage_mb": 34.5
+    }
+  },
+  "dropdown_performance": {
+    "dropdown_open_time_ms": 128,
+    "dropdown_select_time_ms": 92,
+    "available_options_count": 12,
+    "selected_option": "Navigate - Versova",
+    "cpu_usage_percent": 10.7,
+    "memory_usage_mb": 21.6
+  },
+  "radio_button_performance": {
+    "button_interaction_time_ms": 64,
+    "selected_option": "Yes",
+    "cpu_usage_percent": 9.8,
+    "memory_usage_mb": 19.3
+  },
+  "battery_usage": {
+    "session_duration_min": 5,
+    "battery_consumed_percent": 2.1,
+    "estimated_hourly_drain_percent": 25.2
+  },
+  "errors_and_warnings": {
+    "network_latency_warning": false,
+    "login_timeout": false,
+    "otp_delay": false,
+    "ui_lag_detected": false
+  },
+  "recommendations": [
+    "Enable caching for login response to reduce load on DB.",
+    "Optimize image assets on OTP screen to improve load time.",
+    "Add loading indicator during OTP fetch to improve UX.",
+    "Throttle dropdown refresh calls if option count exceeds 20."
+  ]
+}

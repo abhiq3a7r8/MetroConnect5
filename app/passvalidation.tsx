@@ -3,6 +3,7 @@ import { useState } from "react";
 import MetroPass from "@/components/PassComponent";
 import ApplyPass from "@/components/ApplyForPass";
 import { Navbar } from "@/components/Navbar";
+import ShakePopup from "@/components/ShakePopup";
 
 export function passvalidation() {
   const [showApplyPass, setShowApplyPass] = useState(false);
@@ -26,7 +27,7 @@ export function passvalidation() {
         {showApplyPass && <ApplyPass />}
       </ScrollView>
 
-      
+      <ShakePopup />
       <Navbar />
     </View>
   );

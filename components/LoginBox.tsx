@@ -13,7 +13,7 @@ export function LoginBox() {
     const handleLogin = async () => {
         console.log("Phone:", phone);
         try {
-            const response = await fetch("http://192.168.133.42:3000/login", {
+            const response = await fetch("http://192.168.168.100:3000/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -32,7 +32,7 @@ export function LoginBox() {
             router.replace("/enterotp");
     
             
-            await fetch("http://192.168.133.42:3001/send-otp");
+            await fetch("http://192.168.168.100:3001/send-otp");
     
             console.log("OTP request sent.");
         } catch (error) {
@@ -46,9 +46,9 @@ export function LoginBox() {
     return (
         <View className="bg-white h-96 w-[90%] rounded-[10] justify-evenly items-center p-4">
             <CustomText className="text-black text-4xl self-start ml-4">Login</CustomText>
-            <MTextBox placeholder="Phone Number" value={phone} onChangeText={setPhone} />
-            <MTextBox placeholder="Password" value={password} onChangeText={setPassword} secureTextEntry />
-            <Mbutton buttontext="Continue" onPress={handleLogin} /> 
+            <MTextBox accessibilityLabel="Phone Number" placeholder="Phone Number" value={phone} onChangeText={setPhone} />
+            <MTextBox accessibilityLabel="Password" placeholder="Password" value={password} onChangeText={setPassword} secureTextEntry />
+            <Mbutton accessibilityLabel="Continue" buttontext="Continue" onPress={handleLogin} /> 
             <TouchableOpacity onPress={() => Alert.alert("OTP Login", "OTP login functionality not implemented.")}>
                 <Text>Login with OTP</Text>
             </TouchableOpacity>

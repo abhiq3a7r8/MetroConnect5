@@ -76,7 +76,7 @@ export function PlanJourney() {
     }
 
     try {
-      const response = await fetch("http://192.168.133.42:4000/api/route", {
+      const response = await fetch("http://192.168.168.100:4000/api/route", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

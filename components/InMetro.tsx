@@ -39,7 +39,7 @@ export function InMetro() {
       <Text className="font-poppinsMedium text-xl">Are you in a Metro?</Text>
 
       <View className="h-10 w-24 flex-row">
-        <Pressable
+        <Pressable accessibilityLabel="yes_butt"
           className={`h-full w-12 rounded-l-md items-center justify-center ${
             isInMetro === true ? "bg-blue-500" : "bg-gray-300"
           }`}

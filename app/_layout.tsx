@@ -13,7 +13,7 @@ export default function RootLayout() {
   const router = useRouter();
 
   useEffect(() => {
-    router.replace("/dashboard");
+    router.replace("/bookingsummary");
   }, []);
 
   return <Stack screenOptions={{ headerShown: false }} />;

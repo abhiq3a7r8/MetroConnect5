@@ -26,14 +26,7 @@ export default function Dashboard() {
         {route.start && route.end && <MetroRouteResult startStation={route.start} endStation={route.end} />}
 
         
-        <View className="flex-row justify-between mt-8 w-[90%]">
-          <View className="bg-white h-36 w-[47%] rounded-[10] justify-evenly items-center p-4"></View>
-          <View className="bg-white h-36 w-[47%] rounded-[10] justify-evenly items-center p-4"></View>
-        </View>
-        <View className="flex-row justify-between mt-4 w-[90%]">
-          <View className="bg-white h-36 w-[47%] rounded-[10] justify-evenly items-center p-4"></View>
-          <View className="bg-white h-36 w-[47%] rounded-[10] justify-evenly items-center p-4"></View>
-        </View>
+
       </ScrollView>
       <ShakePopup />
       <Navbar />

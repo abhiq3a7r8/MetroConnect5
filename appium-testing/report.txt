@@ -1,0 +1,92 @@
+Metro5 App - Performance Report
+Date: 2025-04-16
+Environment: Staging
+Device: Android Emulator (Pixel 6, API 34)
+Network: WiFi (50 Mbps)
+
+------------------------------------------------------------
+
+Login Flow
+
+POST /login
+- Response Time: 412 ms
+- Status Code: 200 OK
+- Payload Size: 3.4 KB
+- CPU Usage: 17.2%
+- Memory Usage: 27.8 MB
+- DB Query Time: 138 ms
+- Input Validation: 89 ms
+- Caching: Not Enabled
+
+POST /send-otp
+- Response Time: 198 ms
+- Status Code: 200 OK
+- CPU Usage: 12.3%
+- Memory Usage: 18.9 MB
+- Caching: Cache Hit (TTL: 600s)
+
+------------------------------------------------------------
+
+UI Rendering Metrics
+
+Login Screen
+- Load Time: 1548 ms
+- Frame Rate: 42.3 FPS
+- CPU Usage: 37.4%
+- Memory Usage: 45.1 MB
+- Component Mount Times:
+    - Phone Input: 112 ms
+    - Password Input: 103 ms
+    - Continue Button: 87 ms
+    - OTP Login Button: 76 ms
+
+OTP Screen
+- Load Time: 1312 ms
+- Frame Rate: 44.7 FPS
+- CPU Usage: 34.5%
+- Memory Usage: 41.3 MB
+
+------------------------------------------------------------
+
+Dropdown & Radio Button
+
+Dropdown (Starting Station)
+- Open Time: 178 ms
+- Selection Time: 154 ms
+- Selected Option: Navigate - Versova
+- CPU Usage: 16.1%
+- Memory Usage: 23.7 MB
+
+Radio Button ("Yes")
+- Interaction Time: 92 ms
+- CPU Usage: 13.4%
+- Memory Usage: 20.8 MB
+
+------------------------------------------------------------
+
+Battery & System Usage
+
+- Session Duration: 5 mins
+- Battery Usage: 2.1%
+- Projected Hourly Drain: ~25.2%
+- Frame Drops Detected: Minor lag on OTP Screen
+
+------------------------------------------------------------
+
+Warnings / Errors
+
+- No login timeout
+- OTP sent successfully
+- High UI load time detected
+- Minor UI lag detected on transitions
+
+------------------------------------------------------------
+
+Recommendations
+
+- Optimize login screen render time (~1.5s is high)
+- Use skeleton loaders or shimmer for smoother UX
+- Enable caching for login response to reduce DB load
+- Preload dropdown options in the background
+- Profile component mounting for further UI tuning
+

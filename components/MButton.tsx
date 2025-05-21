@@ -3,9 +3,10 @@ import { TouchableOpacity, Text, StyleSheet } from "react-native";
 interface MTextProp {
   buttontext: string;
   onPress?: () => void; // Optional click handler
+  accessibilityLabel: string;
 }
 
-export function Mbutton({ buttontext, onPress }: MTextProp) {
+export function Mbutton({ buttontext, onPress, accessibilityLabel }: MTextProp) {
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
       <Text style={styles.buttonText}>{buttontext}</Text>
